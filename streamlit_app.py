@@ -19,14 +19,16 @@ if len(ingredients_list) != 0:
     ingredients_string = ''
     for fruit_choosen in ingredients_list:
         ingredients_string+=fruit_choosen+ ' '
-        st.subheader(fruit_choosen+' Nutrition Informaion')
         search_on = session.table("smoothies.public.FRUIT_OPTIONS").filter(col("FRUIT_NAME")==fruit_choosen).select(col("SEARCH_ON"))
         pd_df = search_on.to_pandas()
         
         dummy = pd_df.iloc[0]["SEARCH_ON"]
         if dummy:
+            st.subheader(fruit_choosen+' Nutrition Informaion')
             fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{dummy}")
             fv_df = st.data_editor(data = fruityvice_response.json(), use_container_width = True)
+        else: 
+            st.subheader(f"Sorry!, We don't have information on {fruit_choosen}")
     # st.write(ingredients_string)
     my_insert_statement = "insert into smoothies.public.orders(ingredients, name_on_order) values ('"+ingredients_string+"','"+title+"')"
     submit_button = st.button('Submit Order')
