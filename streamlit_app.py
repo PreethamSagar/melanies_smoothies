@@ -24,9 +24,6 @@ if len(ingredients_list) != 0:
         pd_df = search_on.to_pandas()
         
         dummy = pd_df.iloc[0]["SEARCH_ON"]
-        st.write(pd_df)
-        st.write(dummy)
-        st.write(f"https://fruityvice.com/api/fruit/{dummy}")
         fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{dummy}")
         fv_df = st.data_editor(data = fruityvice_response.json(), use_container_width = True)
     # st.write(ingredients_string)
