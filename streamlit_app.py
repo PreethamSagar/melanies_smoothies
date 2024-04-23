@@ -19,6 +19,7 @@ if len(ingredients_list) != 0:
     ingredients_string = ''
     for fruit_choosen in ingredients_list:
         ingredients_string+=fruit_choosen+ ' '
+        st.write(f"https://fruityvice.com/api/fruit/{fruit_choosen}")
         fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{fruit_choosen}")
         fv_df = st.data_editor(data = fruityvice_response.json(), use_container_width = True)
     # st.write(ingredients_string)
