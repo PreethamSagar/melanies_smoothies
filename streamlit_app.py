@@ -23,7 +23,7 @@ if len(ingredients_list) != 0:
         search_on = session.table("smoothies.public.FRUIT_OPTIONS").filter(col("FRUIT_NAME")==fruit_choosen).select(col("SEARCH_ON"))
         pd_df = search_on.to_pandas()
         
-        dummy = pd_df.iloc[0]
+        dummy = pd_df.iloc[0]["SEARCH_ON"]
         st.write(pd_df)
         st.write(dummy)
         st.write(f"https://fruityvice.com/api/fruit/{dummy}")
