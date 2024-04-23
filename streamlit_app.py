@@ -21,8 +21,10 @@ if len(ingredients_list) != 0:
         ingredients_string+=fruit_choosen+ ' '
         st.subheader(fruit_choosen+' Nutrition Informaion')
         search_on = session.table("smoothies.public.FRUIT_OPTIONS").filter(col("FRUIT_NAME")==fruit_choosen).select(col("SEARCH_ON"))
-        dummy = search_on["SEARCH_ON"][0]
-        st.write(search_on)
+        pd_df = search_on.to_pandas()
+        
+        dummy = pd_df.iloc[0]
+        st.write(pd_df)
         st.write(dummy)
         fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{search_on}")
         fv_df = st.data_editor(data = fruityvice_response.json(), use_container_width = True)
