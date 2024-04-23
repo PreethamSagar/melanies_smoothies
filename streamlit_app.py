@@ -21,8 +21,8 @@ if len(ingredients_list) != 0:
         ingredients_string+=fruit_choosen+ ' '
         st.subheader(fruit_choosen+' Nutrition Informaion')
         search_on = session.table("smoothies.public.FRUIT_OPTIONS").filter(col("FRUIT_NAME")==fruit_choosen).select(col("SEARCH_ON"))
-        st.write(search_on)
-        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{search_on}")
+        st.write(f"https://fruityvice.com/api/fruit/{search_on[0]}")
+        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{search_on[0]}")
         fv_df = st.data_editor(data = fruityvice_response.json(), use_container_width = True)
     # st.write(ingredients_string)
     my_insert_statement = "insert into smoothies.public.orders(ingredients, name_on_order) values ('"+ingredients_string+"','"+title+"')"
