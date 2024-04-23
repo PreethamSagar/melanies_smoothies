@@ -20,7 +20,7 @@ if len(ingredients_list) != 0:
     for fruit_choosen in ingredients_list:
         ingredients_string+=fruit_choosen+ ' '
         st.subheader(fruit_choosen+' Nutrition Informaion')
-        search_on = session.table("smoothies.public.FRUIT_OPTIONS").filter(col("FRUIT_NAME")==fruit_choosen).select(col("SEARCH_ON")).collect()
+        search_on = session.table("smoothies.public.FRUIT_OPTIONS").filter(col("FRUIT_NAME")==fruit_choosen).select(col("SEARCH_ON"))
         dummy = search_on[0]
         st.write(search_on)
         st.write(dummy)
