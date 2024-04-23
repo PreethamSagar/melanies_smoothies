@@ -16,7 +16,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT
 # st.dataframe(data = my_dataframe, use_container_width=True)
 ingredients_list = st.multiselect('Choose up to 5 ingredients:', my_dataframe, max_selections = 5)
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
+# st.text(fruityvice_response)
+fv_df = st.data_editor(data = fruitvice_response.json(), use_container_width = True)
 if len(ingredients_list) != 0:
     # st.write(ingredients_list)
     # st.text(ingredients_list)
