@@ -20,7 +20,8 @@ if len(ingredients_list) != 0:
     for fruit_choosen in ingredients_list:
         ingredients_string+=fruit_choosen+ ' '
         st.subheader(fruit_choosen+' Nutrition Informaion')
-        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{lower(fruit_choosen)}")
+        dummy = lower(fruit_choosen)
+        fruityvice_response = requests.get(f"https://fruityvice.com/api/fruit/{dummy}")
         fv_df = st.data_editor(data = fruityvice_response.json(), use_container_width = True)
     # st.write(ingredients_string)
     my_insert_statement = "insert into smoothies.public.orders(ingredients, name_on_order) values ('"+ingredients_string+"','"+title+"')"
